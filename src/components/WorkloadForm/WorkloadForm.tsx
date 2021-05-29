@@ -1,30 +1,37 @@
 import React from 'react';
 import { Dispatch } from 'redux';
+import moment from 'moment';
 import { connect } from 'react-redux';
-import { submit } from '../../state/workloads/actions';
+import { submit, created, createInterval } from '../../state/workloads/actions';
 
 
 interface WorkloadFormDispatchProps {
-  submitWorkload: (complexity: number) => void  
+  submitWorkload: (complexity: number, id: number) => void
 }
 
-interface WorkloadFormProps extends 
+interface WorkloadFormProps extends
   WorkloadFormDispatchProps {}
 
 interface WorkloadFormState {
   complexity: number;
+  id: number;
 }
 
 class WorkloadForm extends React.PureComponent<WorkloadFormProps, WorkloadFormState> {
   defaultState = {
     complexity: 5,
+    id: 0,
   }
 
   state = this.defaultState;
 
   handleSubmit = (e: React.MouseEvent) => {
-    this.props.submitWorkload(this.state.complexity);
-    this.setState(this.defaultState);
+    this.setState({
+      complexity: this.state.complexity,
+      id: this.state.id + 1,
+    }, () => {
+      this.props.submitWorkload(this.state.complexity, this.state.id);
+    });
     e.preventDefault();
   }
 
@@ -32,23 +39,23 @@ class WorkloadForm extends React.PureComponent<WorkloadFormProps, WorkloadFormSt
     return (
       <form>
         <h2>Create workload</h2>
-        
+
         <div>
           <label>
             Complexity: {this.state.complexity}
             <br />
-            <input 
-              value={this.state.complexity} 
-              onChange={(e) => this.setState({ complexity: Number(e.target.value) })} 
-              type="range" 
-              min="1" 
-              max="10" 
+            <input
+              value={this.state.complexity}
+              onChange={(e) => this.setState({ complexity: Number(e.target.value) })}
+              type="range"
+              min="1"
+              max="10"
             />
           </label>
         </div>
 
         <div>
-          <button onClick={this.handleSubmit} type="submit">Start work</button>
+          <button className="btn-create-workload" onClick={this.handleSubmit} type="submit">Start work</button>
         </div>
       </form>
     );
@@ -57,7 +64,11 @@ class WorkloadForm extends React.PureComponent<WorkloadFormProps, WorkloadFormSt
 
 
 const mapDispatchToProps = (dispatch: Dispatch): WorkloadFormDispatchProps => ({
-  submitWorkload: (complexity: number) => dispatch(submit({ complexity })),
+  submitWorkload: (complexity: number, id: number) => {
+    dispatch(submit({ complexity }));
+    dispatch(created({ id: id, complexity: complexity, completeDate: moment().add(10, 'second').toDate(), status: 'WORKING' }));
+    createInterval(id);
+  },
 });
 
 const WorkloadFormContainer = connect(null, mapDispatchToProps)(WorkloadForm);
