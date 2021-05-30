@@ -1,8 +1,9 @@
 import React from 'react';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
+import moment from 'moment';
 import { RootAction, RootState } from '../../state';
-import { cancel, updateStatus } from '../../state/workloads/actions';
+import { cancel, updateStatus, createInterval } from '../../state/workloads/actions';
 import { WorkloadItem, WorkloadItemStateProps } from '../WorkloadItem';
 
 
@@ -20,7 +21,6 @@ export interface WorkloadListProps extends
 
 
 const WorkloadList: React.SFC<WorkloadListProps> = ({ workloads, cancelWorkload }) => {
-  console.log('Workloads - ', workloads);
   return (
   !workloads.length
     ? (
@@ -45,6 +45,7 @@ const mapStateToProps = (state: RootState): WorkloadListStateProps => ({
 
 const mapDispatchToProps = (dispatch: Dispatch<RootAction>): WorkloadListDispatchProps => ({
   cancelWorkload: (id: number) => {
+    createInterval(id, moment().add(0, 'second').toDate(), true);
     dispatch(cancel({ id }));
     dispatch(updateStatus({id: id, status: 'CANCELED'}));
   },

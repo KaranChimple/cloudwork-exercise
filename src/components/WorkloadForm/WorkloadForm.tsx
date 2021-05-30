@@ -67,7 +67,7 @@ const mapDispatchToProps = (dispatch: Dispatch): WorkloadFormDispatchProps => ({
   submitWorkload: (complexity: number, id: number) => {
     dispatch(submit({ complexity }));
     dispatch(created({ id: id, complexity: complexity, completeDate: moment().add(10, 'second').toDate(), status: 'WORKING' }));
-    createInterval(id);
+    createInterval(id, moment().add(10, 'second').toDate(), false);
   },
 });
 
