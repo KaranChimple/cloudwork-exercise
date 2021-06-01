@@ -20,8 +20,8 @@ epicMiddleware.run(epics);
 
 // demo actions
 store.dispatch(WorkloadActions.submit({ complexity: 10 }));
-store.dispatch(WorkloadActions.created({ id: 999, complexity: 10, completeDate: moment().add(10, 'second').toDate(), status: 'WORKING' }));
-WorkloadActions.createInterval(999, moment().add(10, 'second').toDate(), false);
+store.dispatch(WorkloadActions.created({ id: 0, complexity: 10, completeDate: moment().add(10, 'second').toDate(), status: 'WORKING' }));
+WorkloadActions.createInterval(0, moment().add(10, 'second').toDate(), false);
 
 ReactDOM.render(
   (
