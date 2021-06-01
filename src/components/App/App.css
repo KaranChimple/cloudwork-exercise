@@ -1,49 +1,29 @@
 /* .App {} */
 
-.parent-container {
-    margin: 40px 100px 40px 100px;
+@media (max-width: 614px) {
+  .sub-row-right-col {
+    border-bottom: 2px solid slateblue;
+    padding-bottom: 10px
   }
+}
 
-  .heading {
-    color: slateblue;
-  }
-
-  .horizontal-rule {
-    height: 2px;
-    background-color: slateblue;
-  }
-
+@media (min-width: 615px) {
   .workload-details {
-    text-align: left;
-    width: auto;
-    position: relative;
     padding: 12px;
     margin-bottom: 12px;
+    display: flex;
   }
 
   .sub-row-left-col {
-    display: inline-block;
     width: 75%;
     text-align: left;
     margin-right: 20px;
   }
 
   .sub-row-right-col {
-    display: inline-block;
-    width: auto;
-  }
-
-  ol {
-    padding: 0 0;
-    list-style: none;
-  }
-
-  li {
-    padding: 0px 20px 20px 20px;
-    border: 2px;
-    border-style: solid;
-    border-color: slateblue;
-    margin-bottom: 15px;
+    position: absolute;
+    right: 15px;
+    width: 25%
   }
 
   form {
@@ -54,59 +34,86 @@
     top: 80px;
     padding: 0px 20px 20px 20px;
   }
+}
 
-  input[type=range] {
-      -webkit-appearance: none;
-      margin: 18px 0;
-      width: 100%;
-    }
-    input[type=range]:focus {
-      outline: none;
-    }
-    input[type=range]::-webkit-slider-runnable-track {
-      width: 100%;
-      height: 8px;
-      cursor: alias;
-      box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-      background: slateblue;
-      border-radius: 1.3px;
-      border: 0.2px solid #010101;
-    }
-    input[type=range]::-webkit-slider-thumb {
-      box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-      border: 1px solid #000000;
-      height: 36px;
-      width: 16px;
-      border-radius: 3px;
-      background: #ffffff;
-      cursor: pointer;
-      -webkit-appearance: none;
-      margin-top: -14px;
-    }
-    input[type=range]:focus::-webkit-slider-runnable-track {
-      background: slateblue;
-    }
+.parent-container {
+  margin: 40px 80px 40px 100px;
+}
 
+.heading {
+  color: slateblue;
+}
 
-  .btn-create-workload {
-    background-color: slateblue;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 15px;
-  }
+.horizontal-rule {
+  height: 2px;
+  background-color: slateblue;
+}
 
-  h2, h3,
+ol {
+  padding: 0 0;
+  list-style: none;
+}
+
+li {
+  padding: 0px 20px 20px 20px;
+  border: 2px;
+  border-style: solid;
+  border-color: slateblue;
+  margin-bottom: 15px;
+}
+
+.WorkloadItem-secondaryButton {
+  float: right;
+  background-color: slateblue;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-top: -10px;
+  font-size: 15px;
+}
+
+.btn-create-workload {
+  background-color: slateblue;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 15px;
+}
+
+h2, h3,
   span, label {
     color: slateblue;
   }
 
-  .WorkloadItem-secondaryButton {
-    float: right;
-    background-color: slateblue;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    margin-top: -10px;
-    font-size: 15px;
-  }
+
+input[type=range] {
+  -webkit-appearance: none;
+  margin: 18px 0;
+  width: 100%;
+}
+input[type=range]:focus {
+  outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 8px;
+  cursor: alias;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  background: slateblue;
+  border-radius: 1.3px;
+  border: 0.2px solid #010101;
+}
+input[type=range]::-webkit-slider-thumb {
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  border: 1px solid #000000;
+  height: 36px;
+  width: 16px;
+  border-radius: 3px;
+  background: #ffffff;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -14px;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: slateblue;
+}

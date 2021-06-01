@@ -14,13 +14,13 @@ class App extends PureComponent {
 
         <div className="workload-details">
 
+          <div className="sub-row-right-col">
+            <WorkloadFormContainer />
+          </div>
+
           <div className="sub-row-left-col">
             <h2>Workloads</h2>
             <WorkloadListContainer />
-          </div>
-
-          <div className="sub-row-right-col">
-            <WorkloadFormContainer />
           </div>
 
         </div>
